@@ -42,13 +42,16 @@ public class Main {
         if(initialExpression == null || initialExpression.trim().isEmpty()) {
             throw new ExpressionException(ExpressionException.ExpressionExceptionStatuses.EMPTY_EXPRESSION,
                    ExpressionException.EMPTY_EXPRESSION_STRING);
-        } else if(!isParenthesesValid(initialExpression)) {
-            throw new ExpressionException(ExpressionException.ExpressionExceptionStatuses.WRONG_PARENTHESES,
-                    ExpressionException.WRONG_PARENTHESES_STRING);
-        } else if(!String.valueOf(initialExpression.charAt(0)).matches("[-+(\\d]")) {
+        }
+        else if(!String.valueOf(initialExpression.charAt(0)).matches("[-+(\\d]")) {
             throw new ExpressionException(ExpressionException.ExpressionExceptionStatuses.WRONG_FIRST_SYMBOL,
                     ExpressionException.WRONG_FIRST_SYMBOL_STRING);
-        } else {
+        }
+        else if(!isParenthesesValid(initialExpression)) {
+            throw new ExpressionException(ExpressionException.ExpressionExceptionStatuses.WRONG_PARENTHESES,
+                    ExpressionException.WRONG_PARENTHESES_STRING);
+        }
+        else {
             for(int i = 0; i < initialExpression.length(); i++) {
                 String symbol = String.valueOf(initialExpression.charAt(i));
                 String nextSymbol = i + 1 == initialExpression.length() ? null :
